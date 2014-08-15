@@ -1,0 +1,215 @@
+<html>
+<head>
+<title>FB</title>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<style>
+#content {
+  padding: 0;
+}
+#player {
+  background: #FFF;
+  position: absolute;
+  width: 750;
+  height: 500px;
+  box-shadow: 0 0 20px #000;
+  overflow: hidden;
+}
+#redbox {
+  background-color: transparent;
+  position: absolute;
+  width: 750px;
+  height: 84px;
+  box-shadow: 0 0 20px #000;
+  border-radius: 5px;
+  border: 2px solid;
+  border-color: #FF0000;
+}
+#timer {
+  position: absolute;
+  width: 300px;
+  text-align: center;
+  height: 80px;
+  font-family: "Arial";
+  font-size: 32px;
+  top: 30px;
+}
+
+#fizz1 {
+	top: -200px;
+	width: 88px;
+	height: 300%;
+	background: url(fizz.png) repeat-y;
+	background-position: 0 0;
+	position: absolute;
+}
+#fizz2 {
+	top: -440px;
+	left: 88px;
+	width: 65px;
+	height: 300%;
+	background: url(fizz.png) repeat-y;
+	background-position: -88 0;
+	position: absolute;
+}
+#fizz3 {
+	top: -200px;
+	left: 154px;
+	width: 88px;
+	height: 300%;
+	background: url(fizz.png) repeat-y;
+	background-position: -154 0;
+	position: absolute;
+}
+#fizz4 {
+	top: -440px;
+	left: 242px;
+	width: 112px;
+	height: 300%;
+	background: url(fizz.png) repeat-y;
+	background-position: -242 0;
+	position: absolute;
+}
+#buzz1 {
+	top: -120px;
+	width: 87px;
+	height: 300%;
+	left: 353px;
+	background: url(buzz.png) repeat-y;
+	background-position: 0 0;
+	position: absolute;
+}
+#buzz2 {
+	top: -520px;
+	width: 110px;
+	height: 300%;
+	left: 440px;
+	background: url(buzz.png) repeat-y;
+	background-position: -87 0;
+	position: absolute;
+}
+
+#buzz3 {
+	top: -120px;
+	width: 110px;
+	height: 300%;
+	left: 550px;
+	background: url(buzz.png) repeat-y;
+	background-position: -197 0;
+	position: absolute;
+}
+
+#buzz4 {
+	top: -520px;
+	width: 110px;
+	height: 300%;
+	left: 638px;
+	background: url(buzz.png) repeat-y;
+	background-position: -285 0;
+	position: absolute;
+}
+
+</style>
+
+</head>
+<body>
+<div id="content">
+
+
+
+
+<div id="player">
+	<div id="fizz1"></div>
+	<div id="fizz2"></div>
+	<div id="fizz3"></div>
+	<div id="fizz4"></div>
+	<div id="buzz1"></div>
+	<div id="buzz2"></div>
+	<div id="buzz3"></div>
+	<div id="buzz4"></div>
+
+
+</div>
+
+
+<div id="redbox"></div>
+
+<div id="timer">0</div>
+
+<script>
+
+  window.onresize = function() {
+    player.style.left = (window.innerWidth - 750)/2  + 'px';
+    player.style.top = (window.innerHeight - 500)/2  + 'px';
+
+    redbox.style.left = (window.innerWidth - 750)/2  + 'px';
+    redbox.style.top = (window.innerHeight - 500)/2 + 198 + 'px';
+
+    timer.style.left = (window.innerWidth - 300)/2  + 'px';
+  };
+
+  window.onresize();
+
+</script>
+<script>
+
+function fizzAnim() {
+	$("#fizz1").css({top: "-200px"});
+	$("#fizz1").animate({
+		top: "-440px"
+	}, 3000, fizzAnim);
+
+	$("#fizz2").css({top: "-440px"});
+	$("#fizz2").animate({
+		top: "-200px"
+	}, 3000, fizzAnim);
+	$("#fizz3").css({top: "-200px"});
+	$("#fizz3").animate({
+		top: "-440px"
+	}, 3000, fizzAnim);
+
+	$("#fizz4").css({top: "-440px"});
+	$("#fizz4").animate({
+		top: "-200px"
+	}, 3000, fizzAnim);
+
+}
+
+function buzzAnim() {
+	$("#buzz1").css({top: "-120px"});
+	$("#buzz1").animate({
+		top: "-520px"
+	}, 5000, buzzAnim);
+
+	$("#buzz2").css({top: "-520px"});
+	$("#buzz2").animate({
+		top: "-120px"
+	}, 5000, buzzAnim);
+	$("#buzz3").css({top: "-120px"});
+	$("#buzz3").animate({
+		top: "-520px"
+	}, 5000, buzzAnim);
+
+	$("#buzz4").css({top: "-520px"});
+	$("#buzz4").animate({
+		top: "-120px"
+	}, 5000, buzzAnim);
+}
+
+var startTime = new Date();
+
+function updateTimer() {
+	var currTime = Math.floor((new Date() - startTime)/1000 +0.5);
+	$("#timer").html(currTime);
+}
+
+$(document).ready(function() {
+ fizzAnim();
+ buzzAnim();
+
+ setInterval(updateTimer, 100);
+});
+</script>
+	</div>
+
+</body>
+</html>
